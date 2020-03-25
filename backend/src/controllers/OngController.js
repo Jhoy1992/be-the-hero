@@ -12,6 +12,10 @@ module.exports = {
     const { name, email, whatsapp, city, uf } = req.body
     const id = crypto.randomBytes(4).toString("HEX")
 
+    if (!name || !email || !whatsapp || !city || !uf) {
+      return res.status(400).json({ error: "Validation failed." })
+    }
+
     await connection("ongs").insert({ id, name, email, whatsapp, city, uf })
 
     return res.json({ id })
