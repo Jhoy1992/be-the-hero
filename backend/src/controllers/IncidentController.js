@@ -18,6 +18,7 @@ module.exports = {
         "ongs.city",
         "ongs.uf"
       ])
+      .orderBy("id", "desc")
 
     res.header("X-Total-Count", count["count(*)"])
 
