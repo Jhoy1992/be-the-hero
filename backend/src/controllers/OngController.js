@@ -1,5 +1,5 @@
-import crypto from "crypto"
 import connection from "../database/connection"
+import generateUniqueId from "../utils/generateUniqueId"
 
 module.exports = {
   async index(req, res) {
@@ -10,11 +10,7 @@ module.exports = {
 
   async create(req, res) {
     const { name, email, whatsapp, city, uf } = req.body
-    const id = crypto.randomBytes(4).toString("HEX")
-
-    if (!name || !email || !whatsapp || !city || !uf) {
-      return res.status(400).json({ error: "Validation failed." })
-    }
+    const id = generateUniqueId()
 
     await connection("ongs").insert({ id, name, email, whatsapp, city, uf })
 

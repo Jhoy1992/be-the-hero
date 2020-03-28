@@ -29,10 +29,6 @@ module.exports = {
     const { authorization: ong_id } = req.headers
     const { title, description, value } = req.body
 
-    if (!title || !description || !value) {
-      return res.status(400).json({ error: "Validation failed." })
-    }
-
     const [id] = await connection("incidents").insert({
       ong_id,
       title,
